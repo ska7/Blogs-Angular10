@@ -7,9 +7,14 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class BlogInputComponent {
   value: string;
+  @Output() createNewPost = new EventEmitter<string>();
   
   constructor() { 
     this.setInputValue('');
+  }
+
+  emitCreateNewPost(newPost) {
+    this.createNewPost.emit(newPost);
   }
 
   setInputValue (newValue) {
@@ -19,9 +24,4 @@ export class BlogInputComponent {
   handleChange(value): void {
     this.setInputValue(value);
   }
-
-  handleCreatePost() {
-    console.log(`I'm going to create this post: ${this.value}`)
-  }
-
 }
