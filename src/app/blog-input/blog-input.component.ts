@@ -15,6 +15,7 @@ export class BlogInputComponent {
 
   emitCreateNewPost(newPost) {
     this.createNewPost.emit(newPost);
+    this.setInputValue('');
   }
 
   setInputValue (newValue) {

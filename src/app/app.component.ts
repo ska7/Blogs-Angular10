@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
+import { Blog } from './interfaces/Blog';
 
-interface Blog {
-  text: string;
-  id: Symbol
-}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,11 +11,11 @@ export class AppComponent {
   blogs: Blog[];
 
   constructor () {
-    this.blogs = [];
+    this.blogs = [{text: 'Default Post', id: Symbol('Default Post')}];
   }
 
   handleCreateNewPost(post) {
-    console.log(`Trying to create new post: ${post}`);
+    console.log(`Creating new post: ${post}`);
     const newPost: Blog = {
       text: post,
       id: Symbol(post)

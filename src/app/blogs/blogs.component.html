@@ -1,1 +1,4 @@
-<p>blogs works!</p>
+<div class="post" *ngFor="let blog of blogs">
+    <p class="post-text">{{ blog.text }}</p>
+    <p class="post-remove-btn">[X]</p>
+</div>

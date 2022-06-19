@@ -1,2 +1,2 @@
-<input placeholder="Type in your thoughts" #newPost/>
-<button (click)="emitCreateNewPost(newPost)">Create Post</button>
+<input [value]="value" (change)="handleChange($event.target.value)" placeholder="Type in your thoughts" #newPost/>
+<button (click)="emitCreateNewPost(newPost.value)">Create Post</button>
