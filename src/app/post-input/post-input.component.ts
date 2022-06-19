@@ -1,11 +1,11 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-blog-input',
-  templateUrl: './blog-input.component.html',
-  styleUrls: ['./blog-input.component.less']
+  selector: 'app-post-input',
+  templateUrl: './post-input.component.html',
+  styleUrls: ['./post-input.component.less']
 })
-export class BlogInputComponent {
+export class PostInputComponent {
   value: string;
   @Output() createNewPost = new EventEmitter<string>();
   

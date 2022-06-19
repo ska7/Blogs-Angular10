@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
-import { Blog } from './interfaces/Blog';
+import { Post } from './interfaces/Post';
 
+const defaultPosts = [
+  {text: 'Welcome!', id: new Date()},
+  {text: 'Create Your Own Post :)', id: new Date()},
+];
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,19 +12,23 @@ import { Blog } from './interfaces/Blog';
 })
 
 export class AppComponent {
-  blogs: Blog[];
+  posts: Post[];
 
   constructor () {
-    this.blogs = [{text: 'Default Post', id: Symbol('Default Post')}];
+    this.posts = defaultPosts;
   }
 
   handleCreateNewPost(post) {
     console.log(`Creating new post: ${post}`);
-    const newPost: Blog = {
+    const newPost: Post = {
       text: post,
-      id: Symbol(post)
+      id: new Date()
     }
 
-    this.blogs = [...this.blogs, newPost]
+    this.posts = [...this.posts, newPost]
+  }
+
+  handleDeletePost(postId) {
+    this.posts = this.posts.filter(blog => blog.id !== postId);
   }
 }

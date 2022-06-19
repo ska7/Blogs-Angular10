@@ -1,0 +1,4 @@
+<div class="post" *ngFor="let post of posts">
+    <p class="post-text">{{ post.text }}</p>
+    <p class="post-remove-btn" (click)="emitDeletePost(post.id)">X</p>
+</div>
