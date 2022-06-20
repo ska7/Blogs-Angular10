@@ -1,4 +1,6 @@
-<app-post-input (createNewPost)="handleCreateNewPost($event)"></app-post-input>
-<app-posts [posts]="posts" (deletePost)="handleDeletePost($event)"></app-posts>
+<div class="app">
+    <app-post-input (createNewPost)="handleCreateNewPost($event)"></app-post-input>
+    <app-posts [posts]="posts" (deletePost)="handleDeletePost($event)"></app-posts>
+</div>
 
 <router-outlet></router-outlet>
