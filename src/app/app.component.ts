@@ -1,10 +1,6 @@
 import { Component } from '@angular/core';
 import { Post } from './interfaces/Post';
 
-const defaultPosts = [
-  {text: 'Welcome!', id: new Date()},
-  {text: 'Create Your Own Post :)', id: new Date()},
-];
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,13 +11,14 @@ export class AppComponent {
   posts: Post[];
 
   constructor () {
-    this.posts = defaultPosts;
   }
 
   handleCreateNewPost(post) {
-    console.log(`Creating new post: ${post}`);
+    const { title, text } = post;
+    console.log(`Creating new post: ${title}`);
     const newPost: Post = {
-      text: post,
+      title: title,
+      text: text,
       id: new Date()
     }
 

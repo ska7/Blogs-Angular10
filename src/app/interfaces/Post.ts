@@ -1,4 +1,6 @@
 export interface Post {
+    title: string;
     text: string;
-    id: Date
+    id: Date;
+    imageSrc?: string;
   }

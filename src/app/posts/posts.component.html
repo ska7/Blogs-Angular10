@@ -1,3 +1,8 @@
 <div class="column posts-container" *ngFor="let post of posts">
-    <app-post [text]="post.text" [imageSrc]="post.imageSrc"></app-post>
+    <app-post 
+        [text]="post.text"  
+        [imageSrc]="post.imageSrc"
+        [title]="post.title"
+        [id]="post.id"
+        ></app-post>
 </div>

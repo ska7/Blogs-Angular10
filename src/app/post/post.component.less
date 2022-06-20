@@ -1,3 +1,27 @@
 .post-container {
-    width: 100% !important
+    width: 100% !important;
+    position: relative;
+    .card-body{
+        
+    }
+}
+
+.post-remove-btn {
+    position: absolute;
+    display: flex;
+    font-size: 13px;
+    font-weight: 100;
+    justify-content: center;
+    align-items: center;
+    top: 12px;
+    right: 12px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s;
+    &:hover {
+        background-color: rgba(255, 255, 255);
+        cursor: pointer;
+    }
 }
