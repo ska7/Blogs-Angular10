@@ -1,4 +1,3 @@
-<div class="post" *ngFor="let post of posts">
-    <p class="post-text">{{ post.text }}</p>
-    <p class="post-remove-btn" (click)="emitDeletePost(post.id)">X</p>
+<div class="column posts-container" *ngFor="let post of posts">
+    <app-post [text]="post.text" [imageSrc]="post.imageSrc"></app-post>
 </div>

@@ -1,10 +1,10 @@
-<div class="d-flex flex-row justify-content-center p-2 m-2">
+<div class="input-container">
     <input
         class="form-control col-6"
         [value]="value"
         (change)="handleChange($event.target.value)"
         placeholder="Type in your thoughts" 
         #newPost/>
-    <button class="col-2 ml-3" (click)="emitCreateNewPost(newPost.value)">Create Post</button>
+    <button class="col-2 ml-3 btn btn-success" (click)="emitCreateNewPost(newPost.value)">Create Post</button>
 </div>
 
