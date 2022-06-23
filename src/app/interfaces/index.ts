@@ -3,4 +3,8 @@ export interface Post {
     text: string;
     id: Date;
     imageSrc?: string;
-  }
+};
+
+export interface PostsResponse {
+    posts: Post[];
+};
