@@ -1,7 +1,7 @@
 
 <ng-template #elseBlock>Loading</ng-template>
-<div *ngIf="posts.length; else elseBlock">
-    <div #postsContainer class="column posts-container" *ngFor="let post of posts">
+<div *ngIf="filteredPosts.length; else elseBlock">
+    <div #postsContainer class="column posts-container" *ngFor="let post of filteredPosts">
         <app-post 
             [text]="post.text"  
             [imageSrc]="post.imageSrc"

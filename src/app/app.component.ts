@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Post } from './interfaces';
 
 @Component({
   selector: 'app-root',
@@ -8,24 +7,11 @@ import { Post } from './interfaces';
 })
 
 export class AppComponent {
-  posts: Post[];
-
+  searchValue: string = '';
   constructor () {
   }
 
-  handleCreateNewPost(post) {
-    const { title, text } = post;
-    console.log(`Creating new post: ${title}`);
-    const newPost: Post = {
-      title: title,
-      text: text,
-      id: new Date()
-    }
-
-    this.posts = [...this.posts, newPost]
-  }
-
-  handleDeletePost(postId) {
-    this.posts = this.posts.filter(blog => blog.id !== postId);
+  handleSearchValueChange(searchValue) {
+    this.searchValue = searchValue;
   }
 }

@@ -1,4 +1,4 @@
-<app-post-input (createNewPost)="handleCreateNewPost($event)"></app-post-input>
-<app-posts></app-posts>
+<app-post-search (filterPosts)="handleSearchValueChange($event)"></app-post-search>
+<app-posts [searchValue]="searchValue"></app-posts>
 
 <router-outlet></router-outlet>

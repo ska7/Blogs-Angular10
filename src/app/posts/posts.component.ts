@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, Input, EventEmitter, OnInit, SimpleChanges } from '@angular/core';
 import { Post } from '../interfaces';
 import { PostsService } from '../shared/posts.service';
 
@@ -16,18 +16,40 @@ const defaultPosts = [
   styleUrls: ['./posts.component.less']
 })
 export class PostsComponent implements OnInit {
-  posts: Post[] = [];
+  fetchedPosts: Post[] = [];
+  filteredPosts: Post[] = [];
+  @Input() searchValue: string;
   @Output() deletePost = new EventEmitter<Date>();
 
   constructor(private postsService: PostsService) { }
 
-  emitDeletePost(postId) {
-    this.deletePost.emit(postId);
+  handleFilterPosts(filterString) {
+    if (!filterString) {
+      this.filteredPosts = this.fetchedPosts;
+    };
+
+    this.filteredPosts = this.fetchedPosts.filter(post => {
+      const titleMatched = post.title.toLowerCase().includes(filterString.toLowerCase());
+      const bodyMatched = post.text.toLowerCase().includes(filterString.toLowerCase());
+
+      return titleMatched || bodyMatched;
+    })
   }
+
+
 
   ngOnInit(): void {
     this.postsService.load().subscribe(({ posts }) => {
-      this.posts = posts;
+      this.fetchedPosts = posts;
+      this.filteredPosts = posts;
     })
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log('Changes in the posts:', changes);
+    const { searchValue } = changes;
+    const newSearchValue = searchValue.currentValue;
+
+    this.handleFilterPosts(newSearchValue);
   }
 }
