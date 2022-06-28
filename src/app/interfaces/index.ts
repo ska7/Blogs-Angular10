@@ -1,6 +1,6 @@
 export interface Post {
     title: string;
-    text: string;
+    description: string;
     id: Date;
     imageSrc?: string;
 };

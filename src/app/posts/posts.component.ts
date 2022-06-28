@@ -19,22 +19,27 @@ export class PostsComponent implements OnInit {
   fetchedPosts: Post[] = [];
   filteredPosts: Post[] = [];
   @Input() searchValue: string;
+  @Input() newPost: Post;
   @Output() deletePost = new EventEmitter<Date>();
 
   constructor(private postsService: PostsService) { }
 
-  handleFilterPosts(filterString) {
+  handleFilterPosts(filterString = '') {
     if (!filterString) {
       this.filteredPosts = this.fetchedPosts;
     };
 
     this.filteredPosts = this.fetchedPosts.filter(post => {
       const titleMatched = post.title.toLowerCase().includes(filterString.toLowerCase());
-      const bodyMatched = post.text.toLowerCase().includes(filterString.toLowerCase());
+      const bodyMatched = post.description.toLowerCase().includes(filterString.toLowerCase());
 
       return titleMatched || bodyMatched;
     })
   };
+
+  handleNewPost(newPost) {
+    this.filteredPosts = [newPost ,...this.filteredPosts];
+  }
 
   ngOnInit(): void {
     this.postsService.load().subscribe(({ posts }) => {
@@ -45,9 +50,11 @@ export class PostsComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     console.log('Changes in the posts:', changes);
-    const { searchValue } = changes;
-    const newSearchValue = searchValue.currentValue;
+    const { searchValue, newPost } = changes;
+    const newSearchValue = searchValue?.currentValue;
+    const newPostBody = newPost?.currentValue;
 
-    this.handleFilterPosts(newSearchValue);
+    newSearchValue && this.handleFilterPosts(newSearchValue);
+    newPostBody && this.handleNewPost(newPostBody);
   }
 }

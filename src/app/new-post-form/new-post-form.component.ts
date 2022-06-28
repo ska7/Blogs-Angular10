@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Post } from './../interfaces/index';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -7,18 +8,19 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./new-post-form.component.less']
 })
 export class NewPostFormComponent implements OnInit {
+  @Output() newPostEmitter = new EventEmitter<Post>();
   private postTextValidator = Validators.compose([Validators.minLength(4), Validators.required]);
-  private 
 
   newPostForm = this.fb.group({
     title: ['', this.postTextValidator],
     description: ['', this.postTextValidator],
-    image: ['', this.postTextValidator]
+    imageSrc: ['', this.postTextValidator]
   })
   constructor(private fb: FormBuilder) { }
 
   handleFormChange() {
     // TODO: handle form errors here
+    console.log(this.newPostForm)
   };
 
   ngOnInit(): void {
@@ -26,8 +28,14 @@ export class NewPostFormComponent implements OnInit {
   }
 
   onSubmit() {
+    const { title, description, imageSrc } = this.newPostForm?.value;
+    const newPost = {
+      title,
+      description,
+      imageSrc,
+      id: new Date()
+    };
+
+    this.newPostEmitter.emit(newPost);
   }
-
-
-
 }

@@ -1,16 +1,16 @@
 <form class="new-post-form form-group" [formGroup]="newPostForm" (ngSubmit)="onSubmit()">
     <div class="input-field">
-        <label class="form-label" for="image">Painting</label>
+        <label class="form-label" for="imageSrc">Painting</label>
         <input [ngClass]="{
-            'is-valid': newPostForm.controls['image'].touched && newPostForm.controls['image'].status === 'VALID',
-            'is-invalid': newPostForm.controls['image'].touched && newPostForm.controls['image'].status === 'INVALID',
+            'is-valid': newPostForm.controls['imageSrc'].touched && newPostForm.controls['imageSrc'].status === 'VALID',
+            'is-invalid': newPostForm.controls['imageSrc'].touched && newPostForm.controls['imageSrc'].status === 'INVALID',
             'form-control': true
-        }" id="image" type="text" formControlName="image"/>
-        <div *ngIf="newPostForm.controls['image'].invalid && newPostForm.controls['image'].dirty">
-            <p class="input-error" *ngIf="newPostForm.controls['image'].errors.required">
+        }" id="imageSrc" type="text" formControlName="imageSrc"/>
+        <div *ngIf="newPostForm.controls['imageSrc'].invalid && newPostForm.controls['imageSrc'].dirty">
+            <p class="input-error" *ngIf="newPostForm.controls['imageSrc'].errors.required">
                 This field is required
             </p>
-            <p class="input-error" *ngIf="newPostForm.controls['image'].errors.minlength">
+            <p class="input-error" *ngIf="newPostForm.controls['imageSrc'].errors.minlength">
                 Should be longer than 4 chars
             </p>
         </div>

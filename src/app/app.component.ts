@@ -1,3 +1,4 @@
+import { Post } from './interfaces/index';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,10 +9,15 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   searchValue: string = '';
+  newPost: Post;
   constructor () {
   }
 
   handleSearchValueChange(searchValue) {
     this.searchValue = searchValue;
+  }
+
+  handleCreateNewPost(newPost) {
+    this.newPost = newPost;
   }
 }
