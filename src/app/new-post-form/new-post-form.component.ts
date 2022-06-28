@@ -5,7 +5,7 @@ import { CloudinaryUploaderService } from '../shared/cloudinary-uploader.service
 import { Observable } from 'rxjs';
 
 @Component({
-    selector: 'app-new-post-form',
+    selector: 'new-post-form',
     templateUrl: './new-post-form.component.html',
     styleUrls: ['./new-post-form.component.less'],
 })

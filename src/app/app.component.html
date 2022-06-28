@@ -1,11 +1,7 @@
-<app-post-search (filterPosts)="handleSearchValueChange($event)"></app-post-search>
+<post-search (filterPosts)="handleSearchValueChange($event)"></post-search>
 <div class="posts-container">
-    <app-posts 
-    [newPost]="newPost"
-    [searchValue]="searchValue"></app-posts>
-    <app-new-post-form
-    (newPostEmitter)="handleCreateNewPost($event)"
-    ></app-new-post-form>
+    <posts [newPost]="newPost" [searchValue]="searchValue"></posts>
+    <new-post-form (newPostEmitter)="handleCreateNewPost($event)"></new-post-form>
 </div>
 
 <router-outlet></router-outlet>

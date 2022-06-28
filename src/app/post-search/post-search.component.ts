@@ -1,28 +1,28 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-post-search',
-  templateUrl: './post-search.component.html',
-  styleUrls: ['./post-search.component.less']
+    selector: 'post-search',
+    templateUrl: './post-search.component.html',
+    styleUrls: ['./post-search.component.less'],
 })
 export class PostSearchComponent {
-  value: string;
-  @Output() filterPosts = new EventEmitter<string>();
-  
-  constructor() { 
-    this.setInputValue('');
-  }
+    value: string;
+    @Output() filterPosts = new EventEmitter<string>();
 
-  emitFilterPosts(newPost) {
-    this.filterPosts.emit(newPost);
-  }
+    constructor() {
+        this.setInputValue('');
+    }
 
-  setInputValue (newValue) {
-    this.value = newValue;
-  }
+    emitFilterPosts(newPost) {
+        this.filterPosts.emit(newPost);
+    }
 
-  handleChange(value): void {
-    this.setInputValue(value);
-    this.emitFilterPosts(value);
-  }
+    setInputValue(newValue) {
+        this.value = newValue;
+    }
+
+    handleChange(value): void {
+        this.setInputValue(value);
+        this.emitFilterPosts(value);
+    }
 }
