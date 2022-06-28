@@ -1,8 +1,7 @@
-import { Post, UploadCallback } from './../interfaces/index';
+import { Post } from './../interfaces/index';
 import { Component, OnInit, EventEmitter, Output, Renderer2 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CloudinaryUploaderService } from '../shared/cloudinary-uploader.service';
-import { Observable } from 'rxjs';
 
 @Component({
     selector: 'new-post-form',
@@ -35,23 +34,18 @@ export class NewPostFormComponent implements OnInit {
         this.cloudinaryUploader.open();
     }
 
-    handlePaintingUpload = (error, result) => {
-        const { event, info } = result;
-        const isUploadSuccess = event === 'success';
-
-        if (isUploadSuccess) {
-            const { url } = info || {};
-            this.newPostForm.controls['imageSrc'].setValue(url);
-        }
-    };
-
     ngOnInit(): void {
         this.newPostForm.valueChanges.subscribe(() => this.handleFormChange());
 
         // initialize Cloudinary uploader
         this.cloudinary.renderer = this.renderer;
-        this.cloudinary.initializeCloudinaryUploader(this.handlePaintingUpload).subscribe((uploader) => {
+        this.cloudinary.initializeCloudinaryUploader().subscribe((uploader) => {
             this.cloudinaryUploader = uploader;
+        });
+        // Subscribe to picture upload result
+        this.cloudinary.uploadedPicUrlEmitter.subscribe({
+            next: (url) => this.newPostForm.controls['imageSrc'].setValue(url),
+            error: (error) => console.log(error),
         });
     }
 
