@@ -34,9 +34,7 @@ export class PostsComponent implements OnInit {
 
       return titleMatched || bodyMatched;
     })
-  }
-
-
+  };
 
   ngOnInit(): void {
     this.postsService.load().subscribe(({ posts }) => {

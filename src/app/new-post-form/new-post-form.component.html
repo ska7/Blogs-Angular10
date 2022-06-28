@@ -1,0 +1,52 @@
+<form class="new-post-form form-group" [formGroup]="newPostForm" (ngSubmit)="onSubmit()">
+    <div class="input-field">
+        <label class="form-label" for="image">Painting</label>
+        <input [ngClass]="{
+            'is-valid': newPostForm.controls['image'].touched && newPostForm.controls['image'].status === 'VALID',
+            'is-invalid': newPostForm.controls['image'].touched && newPostForm.controls['image'].status === 'INVALID',
+            'form-control': true
+        }" id="image" type="text" formControlName="image"/>
+        <div *ngIf="newPostForm.controls['image'].invalid && newPostForm.controls['image'].dirty">
+            <p class="input-error" *ngIf="newPostForm.controls['image'].errors.required">
+                This field is required
+            </p>
+            <p class="input-error" *ngIf="newPostForm.controls['image'].errors.minlength">
+                Should be longer than 4 chars
+            </p>
+        </div>
+    </div>
+    <div class="input-field">
+        <label class="form-label" for="title">Title</label>
+        <input [ngClass]="{
+            'is-valid': newPostForm.controls['title'].touched && newPostForm.controls['title'].status === 'VALID',
+            'is-invalid': newPostForm.controls['title'].touched && newPostForm.controls['title'].status === 'INVALID',
+            'form-control': true
+        }" id="title" type="text" formControlName="title"/>
+        <div *ngIf="newPostForm.controls['title'].invalid && newPostForm.controls['title'].dirty">
+            <p class="input-error" *ngIf="newPostForm.controls['title'].errors.required">
+                This field is required
+            </p>
+            <p class="input-error" *ngIf="newPostForm.controls['title'].errors.minlength">
+                Should be longer than 4 chars
+            </p>
+        </div>
+    </div>
+    <div class="input-field">
+        <label class="form-label" for="description">Description</label>
+        <input [ngClass]="{
+            'is-valid': newPostForm.controls['description'].touched && newPostForm.controls['description'].status === 'VALID',
+            'is-invalid': newPostForm.controls['description'].touched && newPostForm.controls['description'].status === 'INVALID',
+            'form-control': true
+        }" id="description" type="text" formControlName="description"/>
+
+        <div *ngIf="newPostForm.controls['description'].invalid && newPostForm.controls['description'].dirty">
+            <p class="input-error" *ngIf="newPostForm.controls['description'].errors.required">
+                This field is required
+            </p>
+            <p class="input-error" *ngIf="newPostForm.controls['description'].errors.minlength">
+                Should be longer than 4 chars
+            </p>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit" [disabled]="!newPostForm.valid">Create Post</button>
+</form>

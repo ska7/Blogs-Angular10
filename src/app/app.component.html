@@ -1,4 +1,7 @@
 <app-post-search (filterPosts)="handleSearchValueChange($event)"></app-post-search>
-<app-posts [searchValue]="searchValue"></app-posts>
+<div class="posts-container">
+    <app-posts [searchValue]="searchValue"></app-posts>
+    <app-new-post-form></app-new-post-form>
+</div>
 
 <router-outlet></router-outlet>
