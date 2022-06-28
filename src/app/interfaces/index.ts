@@ -3,8 +3,10 @@ export interface Post {
     description: string;
     id: Date;
     imageSrc?: string;
-};
+}
 
 export interface PostsResponse {
     posts: Post[];
-};
+}
+
+export type UploadCallback = () => void;
