@@ -1,11 +1,11 @@
 <ng-template #elseBlock>Loading</ng-template>
 <div *ngIf="filteredPosts.length; else elseBlock">
     <div #postsContainer class="column posts-container" *ngFor="let post of filteredPosts">
-        <app-post
+        <post
             [description]="post.description"
             [imageSrc]="post.imageSrc"
             [title]="post.title"
             [id]="post.id"
-        ></app-post>
+        ></post>
     </div>
 </div>

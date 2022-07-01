@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-    selector: 'app-post',
+    selector: 'post',
     templateUrl: './post.component.html',
     styleUrls: ['./post.component.less'],
 })
