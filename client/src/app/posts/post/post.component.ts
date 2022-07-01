@@ -1,3 +1,4 @@
+import { Post } from 'src/app/interfaces';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -6,8 +7,5 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['./post.component.less'],
 })
 export class PostComponent {
-    @Input() description: string;
-    @Input() title: string;
-    @Input() imageSrc: string;
-    @Input() id: Symbol;
+    @Input() post: Post;
 }

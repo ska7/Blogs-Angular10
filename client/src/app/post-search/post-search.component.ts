@@ -21,7 +21,8 @@ export class PostSearchComponent {
         this.value = newValue;
     }
 
-    handleChange(value): void {
+    handleChange(event: Event): void {
+        const value = (event.target as HTMLInputElement).value;
         this.setInputValue(value);
         this.emitFilterPosts(value);
     }

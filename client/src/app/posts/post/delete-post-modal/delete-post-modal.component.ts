@@ -1,29 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Post } from 'src/app/interfaces';
 
 @Component({
     selector: 'ngbd-modal-content',
-    template: `
-        <div class="modal-header">
-            <button
-                type="button"
-                class="btn-close"
-                aria-label="Close"
-                (click)="activeModal.dismiss('Cross click')"
-            ></button>
-        </div>
-        <div class="modal-body">
-            <p>Hello!</p>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">
-                Close
-            </button>
-        </div>
-    `,
+    templateUrl: './active-modal.html',
 })
 class NgbdModalContent {
+    @Input() selectedPost: Post;
     constructor(public activeModal: NgbActiveModal) {}
+
+    handleDeletePost(postId) {
+        this.activeModal.close('Close click');
+        console.log(postId);
+    }
 }
 
 @Component({
@@ -32,9 +22,11 @@ class NgbdModalContent {
     styleUrls: ['./delete-post-modal.component.less'],
 })
 export class DeletePostModalComponent {
+    @Input() post: Post;
     constructor(private modalService: NgbModal) {}
 
     openModal() {
-        this.modalService.open(NgbdModalContent);
+        const modalRef = this.modalService.open(NgbdModalContent);
+        modalRef.componentInstance.selectedPost = this.post;
     }
 }
