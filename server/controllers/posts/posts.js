@@ -3,6 +3,25 @@ import { performance } from 'perf_hooks';
 
 const getUniqueID = () => new Date().getTime().toString().concat(performance.now());
 
+export const getPosts = async (req, res) => {
+    const { q: searchQuery } = req.query;
+    let posts = [];
+
+    try {
+        if (!searchQuery) {
+            posts = await PostModel.find({});
+        } else {
+            posts = await PostModel.find({
+                $or: [{ description: { $regex: searchQuery } }, { title: { $regex: searchQuery } }],
+            });
+        }
+
+        res.status(200).json({ posts });
+    } catch (error) {
+        res.status(500).json({ error });
+    }
+};
+
 export const createPost = async (req, res) => {
     const postId = getUniqueID();
     const { title, description, imageSrc } = req.body;
@@ -16,10 +35,11 @@ export const createPost = async (req, res) => {
     }
 };
 
-export const getPosts = async (req, res) => {
+export const deletePost = async (req, res) => {
+    const { postId } = req.params;
     try {
-        const posts = await PostModel.find({});
-        res.status(200).json({ posts });
+        await PostModel.deleteOne({ id: postId });
+        res.status(200);
     } catch (error) {
         res.status(500).json({ error });
     }

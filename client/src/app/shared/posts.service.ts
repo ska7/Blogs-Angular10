@@ -10,8 +10,9 @@ export class PostsService {
     private postsUrl = 'http://localhost:5050/posts';
     constructor(private http: HttpClient) {}
 
-    load(): Observable<LoadPostsResponse> {
-        return this.http.get<LoadPostsResponse>(this.postsUrl);
+    load(searchQuery: string = ''): Observable<LoadPostsResponse> {
+        const url = searchQuery ? `${this.postsUrl}?q=${searchQuery}` : this.postsUrl;
+        return this.http.get<LoadPostsResponse>(url);
     }
 
     createPost(newPost: Post): Observable<CreatePostResponse> {

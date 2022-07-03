@@ -17,16 +17,7 @@ export class PostsComponent implements OnInit {
     constructor(private postsService: PostsService) {}
 
     handleFilterPosts(filterString = '') {
-        if (!filterString) {
-            this.filteredPosts = this.fetchedPosts;
-        }
-
-        this.filteredPosts = this.fetchedPosts.filter((post) => {
-            const titleMatched = post.title.toLowerCase().includes(filterString.toLowerCase());
-            const bodyMatched = post.description.toLowerCase().includes(filterString.toLowerCase());
-
-            return titleMatched || bodyMatched;
-        });
+        this.loadPosts(filterString);
     }
 
     handleNewPost(newPost) {
@@ -35,23 +26,28 @@ export class PostsComponent implements OnInit {
         });
     }
 
-    loadPosts() {
-        this.postsService.load().subscribe(({ posts }) => {
+    loadPosts(searchQuery?: string) {
+        this.postsService.load(searchQuery).subscribe(({ posts }) => {
             this.fetchedPosts = posts;
         });
     }
 
     ngOnInit(): void {
-        this.loadPosts();
+        setTimeout(() => {
+            this.loadPosts();
+        }, 3000);
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        console.log('Changes in the posts:', changes);
         const { searchValue, newPost } = changes;
-        const newSearchValue = searchValue?.currentValue;
         const newPostBody = newPost?.currentValue;
 
-        newSearchValue && this.handleFilterPosts(newSearchValue);
+        const nextSearchValue = searchValue?.currentValue;
+        const prevSearchValue = searchValue?.previousValue;
+
+        const shouldSearchPosts = nextSearchValue !== prevSearchValue && prevSearchValue !== null;
         newPostBody && this.handleNewPost(newPostBody);
+
+        // if (shouldSearchPosts) this.handleFilterPosts(nextSearchValue);
     }
 }

@@ -23,7 +23,6 @@ export class NewPostFormComponent implements OnInit {
         private fb: FormBuilder,
         private cloudinary: CloudinaryUploaderService,
         private renderer: Renderer2,
-        private postsService: PostsService,
     ) {}
 
     handleFormChange() {
