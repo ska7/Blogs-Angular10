@@ -1,16 +1,20 @@
-import { PostsResponse } from './../interfaces/index';
+import { CreatePostResponse, LoadPostsResponse, Post } from 'src/app/interfaces';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class PostsService {
-  static postsUrl = 'https://app.fakejson.com/q/ixqm99bF?token=wWatAzc5Zepe-lwg87njmw';
-  constructor(private http: HttpClient) { }
+    private postsUrl = 'http://localhost:5050/posts';
+    constructor(private http: HttpClient) {}
 
-  load(): Observable<PostsResponse> {
-    return this.http.get<PostsResponse>(PostsService.postsUrl);
-  }
+    load(): Observable<LoadPostsResponse> {
+        return this.http.get<LoadPostsResponse>(this.postsUrl);
+    }
+
+    createPost(newPost: Post): Observable<CreatePostResponse> {
+        return this.http.post<CreatePostResponse>(this.postsUrl, newPost);
+    }
 }

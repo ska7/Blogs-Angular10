@@ -5,8 +5,12 @@ export interface Post {
     imageSrc?: string;
 }
 
-export interface PostsResponse {
+export interface LoadPostsResponse {
     posts: Post[];
+}
+
+export interface CreatePostResponse {
+    post: Post;
 }
 
 export type UploadCallback = () => void;

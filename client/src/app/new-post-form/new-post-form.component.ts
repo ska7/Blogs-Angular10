@@ -1,3 +1,4 @@
+import { PostsService } from './../shared/posts.service';
 import { Post } from './../interfaces/index';
 import { Component, OnInit, EventEmitter, Output, Renderer2 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -22,11 +23,11 @@ export class NewPostFormComponent implements OnInit {
         private fb: FormBuilder,
         private cloudinary: CloudinaryUploaderService,
         private renderer: Renderer2,
+        private postsService: PostsService,
     ) {}
 
     handleFormChange() {
         // TODO: handle form errors here
-        console.log(this.newPostForm);
     }
 
     onAddPainting(e) {

@@ -30,14 +30,19 @@ export class PostsComponent implements OnInit {
     }
 
     handleNewPost(newPost) {
-        this.filteredPosts = [newPost, ...this.filteredPosts];
+        this.postsService.createPost(newPost).subscribe(() => {
+            this.loadPosts();
+        });
+    }
+
+    loadPosts() {
+        this.postsService.load().subscribe(({ posts }) => {
+            this.fetchedPosts = posts;
+        });
     }
 
     ngOnInit(): void {
-        this.postsService.load().subscribe(({ posts }) => {
-            this.fetchedPosts = posts;
-            this.filteredPosts = posts;
-        });
+        this.loadPosts();
     }
 
     ngOnChanges(changes: SimpleChanges) {

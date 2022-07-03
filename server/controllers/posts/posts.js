@@ -5,8 +5,8 @@ const getUniqueID = () => new Date().getTime().toString().concat(performance.now
 
 export const createPost = async (req, res) => {
     const postId = getUniqueID();
-    const { title, description, imageSrc } = req.body.post;
-    const newPost = new Post({ title, description, imageSrc, id: postId });
+    const { title, description, imageSrc } = req.body;
+    const newPost = new PostModel({ title, description, imageSrc, id: postId });
 
     try {
         await newPost.save();
