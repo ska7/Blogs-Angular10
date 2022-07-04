@@ -1,14 +1,18 @@
+@import '../variables.less';
+
 .app {
     width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
 }
 
-.posts-container {
-    width: 90%;
+.gallery-container {
+    width: 100%;
     display: flex;
     flex-direction: row;
     margin: 30px 0px;
     border: 1px solid green;
+    padding: @app-padding;
 }

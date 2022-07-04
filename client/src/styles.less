@@ -1,7 +1,27 @@
+@import './variables.less';
+@import url('https://fonts.googleapis.com/css2?family=Gulzar&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+
+// Bootstrap default variables override
 
 body {
     width: 100vw;
     height: 100vh;
-    background-color: rgb(246, 243, 243);
-    padding-left: 150px;
+    background-color: @app-background-color;
+}
+
+.hidden {
+    display: none;
+}
+
+.fade-in {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s linear;
+}
+
+.fade-out {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 0.5s, opacity 0.5s linear;
 }

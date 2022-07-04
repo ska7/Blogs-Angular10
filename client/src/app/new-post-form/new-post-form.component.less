@@ -1,10 +1,35 @@
+@import '../../variables.less';
+
 .new-post-form {
+    position: fixed;
+    z-index: 2000;
     box-shadow: 2px 5px 10px grey;
     background-color: #ffffff;
     border-radius: 25px;
     width: 400px;
+    height: 70vh;
     padding: 25px;
     margin: 15px;
+    right: 0;
+    top: 5vh;
+    bottom: 20vh;
+}
+
+.new-post-btn {
+    position: fixed;
+    right: 2vw;
+    bottom: 5vh;
+    display: flex;
+    font-family: @app-font-sans-serif;
+    font-weight: 300;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+    &:hover {
+        cursor: pointer;
+        transform: translateY(2%);
+    }
 }
 
 .input-field {
@@ -19,6 +44,15 @@
 
 .upload-painting-field {
     padding: 0 !important;
-    height: auto !important;
-    height: calc(1.5em + 0.75rem + 2px) !important;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    p {
+        font-size: 12px;
+        margin: 0 !important;
+    }
 }

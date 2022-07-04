@@ -1,5 +1,5 @@
 <ng-template #elseBlock>Loading</ng-template>
-<div>
+<div class="posts-container">
     <div #postsContainer class="column posts" *ngFor="let post of fetchedPosts">
         <div *ngIf="fetchedPosts.length; else elseBlock">
             <post [post]="post"></post>

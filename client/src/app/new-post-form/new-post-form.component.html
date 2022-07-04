@@ -1,14 +1,19 @@
-<form class="new-post-form form-group" [formGroup]="newPostForm" (ngSubmit)="onSubmit()">
+<form
+    class="form-group new-post-form"
+    [ngClass]="showForm ? 'fade-in' : 'fade-out'"
+    [formGroup]="newPostForm"
+    (ngSubmit)="onSubmit()"
+>
     <div class="input-field">
         <label class="form-label" for="imageSrc">Painting</label>
-        <div class="form-control upload-painting-field">
-            <button
-                [disabled]="!cloudinaryUploader"
-                class="btn btn-secondary"
+        <div class="upload-painting-field">
+            <img
                 (click)="onAddPainting($event)"
-            >
-                Upload Painting
-            </button>
+                src="../../assets/upload-image-icon.png"
+                alt="upload_image_icon"
+                height="30px"
+            />
+            <p>Click to upload</p>
         </div>
     </div>
     <div class="input-field">
@@ -37,20 +42,20 @@
     </div>
     <div class="input-field">
         <label class="form-label" for="description">Description</label>
-        <input
+        <textarea
+            class="form-control h-50"
             [ngClass]="{
                 'is-valid':
                     newPostForm.controls['description'].touched &&
                     newPostForm.controls['description'].status === 'VALID',
                 'is-invalid':
                     newPostForm.controls['description'].touched &&
-                    newPostForm.controls['description'].status === 'INVALID',
-                'form-control': true
+                    newPostForm.controls['description'].status === 'INVALID'
             }"
             id="description"
             type="text"
             formControlName="description"
-        />
+        ></textarea>
 
         <div *ngIf="newPostForm.controls['description'].invalid && newPostForm.controls['description'].dirty">
             <p class="input-error" *ngIf="newPostForm.controls['description'].errors.required">
@@ -63,3 +68,8 @@
     </div>
     <button class="btn btn-primary" type="submit" [disabled]="!newPostForm.valid">Create Post</button>
 </form>
+
+<div class="new-post-btn" (click)="toggleForm()">
+    <img alt="create-new-post-btn" src="../../assets/create-post-icon.png" height="50" />
+    <p class="fs-6">Create Post</p>
+</div>

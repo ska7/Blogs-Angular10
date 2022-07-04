@@ -1,4 +1,4 @@
-import { Component, Output, Input, EventEmitter, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Output, Input, EventEmitter, OnInit, SimpleChanges, SimpleChange } from '@angular/core';
 import { Post } from '../interfaces';
 import { PostsService } from '../shared/posts.service';
 
@@ -16,14 +16,19 @@ export class PostsComponent implements OnInit {
 
     constructor(private postsService: PostsService) {}
 
-    handleFilterPosts(filterString = '') {
-        this.loadPosts(filterString);
+    handleFilterPosts(searchQueryChange: SimpleChange) {
+        const { currentValue: searchValue, firstChange } = searchQueryChange || {};
+
+        !firstChange && this.loadPosts(searchValue);
     }
 
-    handleNewPost(newPost) {
-        this.postsService.createPost(newPost).subscribe(() => {
-            this.loadPosts();
-        });
+    handleNewPost(newPostChange: SimpleChange) {
+        const { currentValue: newPost } = newPostChange || {};
+
+        newPost &&
+            this.postsService.createPost(newPost).subscribe(() => {
+                this.loadPosts();
+            });
     }
 
     loadPosts(searchQuery?: string) {
@@ -33,21 +38,13 @@ export class PostsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        setTimeout(() => {
-            this.loadPosts();
-        }, 3000);
+        this.loadPosts();
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        const { searchValue, newPost } = changes;
-        const newPostBody = newPost?.currentValue;
+        const { searchValueChange, newPostChange } = changes;
 
-        const nextSearchValue = searchValue?.currentValue;
-        const prevSearchValue = searchValue?.previousValue;
-
-        const shouldSearchPosts = nextSearchValue !== prevSearchValue && prevSearchValue !== null;
-        newPostBody && this.handleNewPost(newPostBody);
-
-        // if (shouldSearchPosts) this.handleFilterPosts(nextSearchValue);
+        this.handleNewPost(newPostChange);
+        this.handleFilterPosts(searchValueChange);
     }
 }

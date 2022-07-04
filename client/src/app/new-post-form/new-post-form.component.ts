@@ -10,6 +10,7 @@ import { CloudinaryUploaderService } from '../shared/cloudinary-uploader.service
     styleUrls: ['./new-post-form.component.less'],
 })
 export class NewPostFormComponent implements OnInit {
+    showForm: boolean = false;
     cloudinaryUploader;
     private postTextValidator = Validators.compose([Validators.minLength(4), Validators.required]);
     @Output() newPostEmitter = new EventEmitter<Post>();
@@ -27,6 +28,15 @@ export class NewPostFormComponent implements OnInit {
 
     handleFormChange() {
         // TODO: handle form errors here
+    }
+
+    toggleForm() {
+        this.showForm = !this.showForm;
+        this.clearForm();
+    }
+
+    clearForm() {
+        this.newPostForm.reset();
     }
 
     onAddPainting(e) {
