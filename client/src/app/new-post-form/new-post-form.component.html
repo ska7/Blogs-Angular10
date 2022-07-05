@@ -40,10 +40,10 @@
             </p>
         </div>
     </div>
-    <div class="input-field">
+    <div>
         <label class="form-label" for="description">Description</label>
         <textarea
-            class="form-control h-50"
+            class=""
             [ngClass]="{
                 'is-valid':
                     newPostForm.controls['description'].touched &&
@@ -70,6 +70,6 @@
 </form>
 
 <div class="new-post-btn" (click)="toggleForm()">
-    <img alt="create-new-post-btn" src="../../assets/create-post-icon.png" height="50" />
-    <p class="fs-6">Create Post</p>
+    <img alt="create-new-post-btn" src="../../assets/create-post-icon.png" class="h-12 w-36" />
+    <p class="">Create Post</p>
 </div>
